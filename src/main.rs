@@ -53,6 +53,14 @@ impl <'a> Iterator for IterList<'a> {
     }
 }
 
+struct MyBox<T>(T);
+
+impl <T> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
+}
+
 fn main() {
     let mut list = List::new();
     list = list.append(1)
@@ -61,6 +69,8 @@ fn main() {
         .append(4);
 
     let cons_list_iter = list.iter();
+
+    let my_box = MyBox::new(5);  // custom implementation of box, stored on the stack
 
     for num in cons_list_iter {
         println!("{num}")
