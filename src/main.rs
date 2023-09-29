@@ -1,3 +1,5 @@
+use std::ops::Deref;
+
 use crate::List::*;
 
 enum List {
@@ -61,6 +63,14 @@ impl <T> MyBox<T> {
     }
 }
 
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
 fn main() {
     let mut list = List::new();
     list = list.append(1)
@@ -75,4 +85,6 @@ fn main() {
     for num in cons_list_iter {
         println!("{num}")
     }
+
+    println!("{}", 5 == *my_box);
 }
