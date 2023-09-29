@@ -54,5 +54,15 @@ impl <'a> Iterator for IterList<'a> {
 }
 
 fn main() {
-    let cons_list = List::new();
+    let mut list = List::new();
+    list = list.append(1)
+        .append(2)
+        .append(3)
+        .append(4);
+
+    let cons_list_iter = list.iter();
+
+    for num in cons_list_iter {
+        println!("{num}")
+    }
 }
